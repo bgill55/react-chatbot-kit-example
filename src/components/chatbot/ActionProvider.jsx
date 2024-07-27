@@ -11,59 +11,59 @@ const ActionProvider = (props) => {
 
   // ####################### START -----> CAN USE THIS IF WE WANT TO SET BOT MESSAGE FROM API RESPONSE #################################
 
-  // const handleUserMessage = (message) => {
-  //   //add loading untill api data gets fetched
-  //   const loading = createChatBotMessage(<Loader />);
-  //   setState((prev) => ({ ...prev, messages: [...prev?.messages, loading] }));
+   const handleUserMessage = (message) => {
+  //add loading untill api data gets fetched
+     const loading = createChatBotMessage(<Loader />);
+    setState((prev) => ({ ...prev, messages: [...prev?.messages, loading] }));
 
   //   // get response from api as per the typed input
-  //   getPromptResponse({
-  //     query: "msg=" + message,
-  //     onSuccess: (res) => {
-  //       let botMsg = <div dangerouslySetInnerHTML={parseResponseToHTML(res)} />;
-  //       const botMessage = createChatBotMessage(botMsg);
-  //       setState((prev) => {
-  //         const newPrevMsg = prev?.messages.slice(0, -1); // Remove Loading here
-  //         return { ...prev, messages: [...newPrevMsg, botMessage] };
-  //       });
-  //     },
-  //     onError: (err) => {
-  //       console.log(err);
-  //       setState((prev) => {
-  //         const newPrevMsg = prev?.messages.slice(0, -1); // Remove Loading here
-  //         return {
-  //           ...prev,
-  //           messages: [...newPrevMsg, "something went wrong!!"],
-  //         };
-  //       });
-  //     },
-  //   });
-  // };
+   getPromptResponse({
+      query: "msg=" + message,
+      onSuccess: (res) => {
+         let botMsg = <div dangerouslySetInnerHTML={parseResponseToHTML(res)} />;
+         const botMessage = createChatBotMessage(botMsg);
+        setState((prev) => {
+           const newPrevMsg = prev?.messages.slice(0, -1); // Remove Loading here
+           return { ...prev, messages: [...newPrevMsg, botMessage] };
+        });
+      },
+      onError: (err) => {
+        console.log(err);
+        setState((prev) => {
+           const newPrevMsg = prev?.messages.slice(0, -1); // Remove Loading here
+          return {
+             ...prev,
+            messages: [...newPrevMsg, "something went wrong!!"],
+          };
+         });
+       },
+     });
+   };
 
   // ################ END ----->
 
    // ####################### GENERAL WAY #################################
-   const handleUserMessage = (message) => {
-    const botMessage = createChatBotMessage(`Hello, You typed ------> ${message}`);
+ //  const handleUserMessage = (message) => {
+    //const botMessage = createChatBotMessage(`Hello, You typed ------> ${message}`);
 
-    setState((prev) => ({
-      ...prev,
-      messages: [...prev.messages, botMessage],
-    }));
-  };
+   // setState((prev) => ({
+    //  ...prev,
+    //  messages: [...prev.messages, botMessage],
+   // }));
+  //};
 
-  return (
-    <div>
-      {React.Children.map(children, (child) => {
-        return React.cloneElement(child, {
-          actions: {
-            handleUserMessage,
-          },
-        });
-      })}
-    </div>
-  );
-};
+ // return (
+   // <div>
+      //{React.Children.map(children, (child) => {
+       // return //React.cloneElement(child, {
+         // actions: {
+          //  handleUserMessage,
+       //   },
+       // });
+      //})}
+  //  </div>
+ // );
+//};
 
 export default ActionProvider;
 
